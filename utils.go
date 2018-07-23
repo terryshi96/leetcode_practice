@@ -16,6 +16,7 @@ func partition(a []int, l, h int) int {
 	return l
 }
 
+// 快速排序
 func quickSort(a []int, l, h int) {
 	if l > h {
 		return

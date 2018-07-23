@@ -3,7 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	nums := []int{3,1,3,2,2}
-	fmt.Print(singleNumber(nums))
+	nums1 := []int{1,2,2,1}
+	nums2 := []int{2,2}
+	fmt.Print(intersect(nums1,nums2))
 }
 
