@@ -4,7 +4,8 @@ import "fmt"
 
 
 func main() {
-	ss := []int{9}
-	fmt.Print(plusOne(ss))
+	ss := []int{1,0,1}
+	moveZeroes(ss)
+	fmt.Print(ss)
 }
 

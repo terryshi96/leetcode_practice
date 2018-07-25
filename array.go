@@ -145,7 +145,7 @@ func intersect(nums1 []int, nums2 []int) []int {
 func plusOne(digits []int) []int {
 	len := len(digits)
 	for i := len - 1; i >= 0; i-- {
-		digits[i] += 1
+		digits[i]++
 		if digits[i] != 10 {
 			break
 		} else {
@@ -160,4 +160,30 @@ func plusOne(digits []int) []int {
 		}
 	}
 	return digits
+}
+
+//Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+//
+//Example:
+//
+//Input: [0,1,0,3,12] -> [1,0,0,3,12] -> [1,3,0,0,12] -> [1,3,12,0,0]
+//Output: [1,3,12,0,0]
+//Note:
+//
+//You must do this in-place without making a copy of the array.
+//Minimize the total number of operations.
+func moveZeroes(nums []int) {
+	index := 0
+	flag := true
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != 0 && nums[index] == 0 {
+			nums[index], nums[i] = nums[i], nums[index]
+			i = index
+			flag = true
+		}
+		if flag && nums[i] == 0 {
+			index = i
+			flag = false
+		}
+	}
 }
