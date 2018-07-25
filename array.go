@@ -12,7 +12,7 @@ func removeDuplicates(nums []int) int {
 	p := 0
 	for p < l-1 {
 		if nums[p] == nums[p+1] {
-			for i:=p; i<l-1; i++ {
+			for i := p; i < l-1; i++ {
 				nums[i] = nums[i+1]
 			}
 			l--
@@ -20,7 +20,7 @@ func removeDuplicates(nums []int) int {
 			p++
 		}
 	}
-	fmt.Println(nums,l)
+	fmt.Println(nums, l)
 	return l
 }
 
@@ -32,7 +32,7 @@ func maxProfit(prices []int) int {
 	l := len(prices)
 	sum := 0
 	if l > 1 {
-		for i:=1;i<l;i++ {
+		for i := 1; i < l; i++ {
 			if prices[i] > prices[i-1] {
 				sum += prices[i] - prices[i-1]
 			}
@@ -48,11 +48,11 @@ func maxProfit(prices []int) int {
 //After reversing all numbers     : 7 6 5 4 3 2 1
 //After reversing first k numbers : 5 6 7 4 3 2 1
 //After revering last n-k numbers : 5 6 7 1 2 3 4 --> Result
-func rotate(nums []int, k int)  {
-	index,j,n := 0,0,len(nums)
-	for i:=1;i<=n;i++{
-		index = j + i * k % n
-		nums[j],nums[index] = nums[index], nums[j]
+func rotate(nums []int, k int) {
+	index, j, n := 0, 0, len(nums)
+	for i := 1; i <= n; i++ {
+		index = j + i*k%n
+		nums[j], nums[index] = nums[index], nums[j]
 		if j == index {
 			j++
 		}
@@ -69,7 +69,7 @@ func containsDuplicate(nums []int) bool {
 	if len(nums) < 2 {
 		return false
 	}
-	for i:=0;i<len(nums)-1;i++ {
+	for i := 0; i < len(nums)-1; i++ {
 		if nums[i] == nums[i+1] {
 			return true
 		}
@@ -83,7 +83,7 @@ func containsDuplicate(nums []int) bool {
 //we can XOR all bits together to find the unique number.
 func singleNumber(nums []int) int {
 	a := 0
-	for _,v := range nums {
+	for _, v := range nums {
 		a ^= v
 	}
 	return a
@@ -114,8 +114,8 @@ func intersect(nums1 []int, nums2 []int) []int {
 	sort.Ints(a)
 	sort.Ints(b)
 	k := 0
-	for _,v := range a {
-		for i:=k;i<len(b);i++ {
+	for _, v := range a {
+		for i := k; i < len(b); i++ {
 			if v == b[i] {
 				tmp_nums = append(tmp_nums, v)
 				k = i + 1
@@ -126,3 +126,38 @@ func intersect(nums1 []int, nums2 []int) []int {
 	return tmp_nums
 }
 
+//Given a non-empty array of digits representing a non-negative integer, plus one to the integer.
+//
+//The digits are stored such that the most significant digit is at the head of the list, and each element in the array contain a single digit.
+//
+//You may assume the integer does not contain any leading zero, except the number 0 itself.
+//
+//Example 1:
+//
+//Input: [1,2,3]
+//Output: [1,2,4]
+//Explanation: The array represents the integer 123.
+//Example 2:
+//
+//Input: [4,3,2,1]
+//Output: [4,3,2,2]
+//Explanation: The array represents the integer 4321.
+func plusOne(digits []int) []int {
+	len := len(digits)
+	for i := len - 1; i >= 0; i-- {
+		digits[i] += 1
+		if digits[i] != 10 {
+			break
+		} else {
+			digits[i] = 0
+			if i == 0 {
+				digits = append(digits, 1)
+				for j := len - 1; j >= 0; j-- {
+					digits[j], digits[j+1] = digits[j+1], digits[j]
+				}
+				break
+			}
+		}
+	}
+	return digits
+}
