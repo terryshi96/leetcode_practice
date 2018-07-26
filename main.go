@@ -4,8 +4,7 @@ import "fmt"
 
 
 func main() {
-	ss := []int{1,0,1}
-	moveZeroes(ss)
-	fmt.Print(ss)
+	nums := []int{0,3,-3,4,-1}
+	fmt.Println(twoSum(nums,-1))
 }
 

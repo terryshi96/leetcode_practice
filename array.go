@@ -187,3 +187,77 @@ func moveZeroes(nums []int) {
 		}
 	}
 }
+
+//Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+//
+//You may assume that each input would have exactly one solution, and you may not use the same element twice.
+//
+//Example:
+//
+//Given nums = [2, 7, 1, 6, 11, 15], target = 9,
+//
+//Because nums[0] + nums[1] = 2 + 7 = 9,
+//return [0, 1].
+
+func twoSum(nums []int, target int) []int {
+	a, b := map[int]int{}, map[int]int{}
+	var c []int
+	tmp := float32(target) / 2.0
+	flag := true
+	for k, v := range nums {
+		t := float32(v)
+		if t < tmp {
+			a[v] = k
+		}
+		if t > tmp {
+			b[v] = k
+		}
+		if t == tmp {
+			if flag {
+				a[v] = k
+				flag = false
+			} else {
+				b[v] = k
+			}
+		}
+	}
+	for i, j := range a {
+		index, ok := b[target - i]
+		if ok {
+			c = append(c,j,index)
+		}
+	}
+	return c
+}
+
+func bestTwoSum(nums []int, target int) []int {
+	count := len(nums)
+	tmpNums := make([]int, count)
+	copy(tmpNums[:], nums)
+	res := []int{}
+	i := 0
+	j := count - 1
+	sort.Ints(nums)  // 从小到大，排序
+
+	for i < j {
+		sum := nums[i] + nums[j]
+		if sum > target {
+			j--
+			continue
+		} else if sum < target {
+			i++
+			continue
+		} else {
+			break
+		}
+	}
+	if i < j {
+		for k, v := range tmpNums {
+			if nums[i] == v || nums[j] == v {
+				res = append(res, k)
+			}
+		}
+	}
+
+	return res
+}
