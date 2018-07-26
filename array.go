@@ -204,6 +204,7 @@ func twoSum(nums []int, target int) []int {
 	var c []int
 	tmp := float32(target) / 2.0
 	flag := true
+	// 对整个数组进行了循环，所以用时较长，总体思想都是用一个小的数加一个大的数，这里实现方式不太好
 	for k, v := range nums {
 		t := float32(v)
 		if t < tmp {
