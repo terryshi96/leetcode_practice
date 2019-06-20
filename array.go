@@ -262,3 +262,48 @@ func bestTwoSum(nums []int, target int) []int {
 
 	return res
 }
+
+//Determine if a 9x9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+//
+//Each row must contain the digits 1-9 without repetition.
+//Each column must contain the digits 1-9 without repetition.
+//Each of the 9 3x3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+// first delete all '.'
+// HashMap
+
+func isValidSudoku(board [][]byte) bool {
+	is_valid := false
+	for i:=0 ; i<9; i++ {
+		for j:=0; j<9; j++ {
+			sudoku_map := map[byte]int{}
+			if _, ok := sudoku_map[board[i][j]]; ok {
+				return is_valid
+			} else if board[i][j] != byte('.') {
+				sudoku_map[board[i][j]] = j
+			}
+		}
+	}
+	for i:=0 ; i<9; i++ {
+		for j:=0; j<9; j++ {
+			sudoku_map := map[byte]int{}
+			if _, ok := sudoku_map[board[j][i]]; ok {
+				return is_valid
+			} else if board[j][i] != byte('.') {
+				sudoku_map[board[j][i]] = i
+			}
+		}
+	}
+ 1,1
+ 1,4
+ 1,7
+ 4,1
+ 4,4
+ 4,7
+ 7,1
+ 7,4
+ 7,7
+	return is_valid
+}
+
+
+
